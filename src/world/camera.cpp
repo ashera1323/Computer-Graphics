@@ -65,8 +65,8 @@ const float4x4 cg::world::camera::get_view_matrix() const
 	float3 eye = position + get_direction();
 
 	float3 z_axis = normalize(position - eye);
-	float3 x_axis = normalize(cross(up, x_axis));
-	float3 y_axis = cross(x_axis, x_axis);
+	float3 x_axis = normalize(cross(up, z_axis));
+	float3 y_axis = cross(z_axis, x_axis);
 	return float4x4{
             {x_axis.x, y_axis.x, z_axis.x, 0},
             {x_axis.y, y_axis.y, z_axis.y, 0},
@@ -99,7 +99,7 @@ const DirectX::XMMATRIX camera::get_dxm_mvp_matrix() const
 
 const float4x4 cg::world::camera::get_projection_matrix() const
 {
-	float f = 2.f / std::tanf(angle_of_view/2.f);
+	float f = 1.f / std::tanf(angle_of_view/2.f);
 	return float4x4{
             {f / aspect_ratio, 0, 0 ,0},
             {0, f, 0, 0},

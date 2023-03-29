@@ -109,7 +109,6 @@ namespace cg
 		};
 		static unsigned_color from_float3(const float3& color)
 		{
-			unsigned_color out{};
 			return from_color(color::from_float3(color));
 		};
 		float3 to_float3() const
@@ -119,7 +118,7 @@ namespace cg
                     static_cast<float>(r),
                     static_cast<float>(g),
                     static_cast<float>(b)
-			};
+			} / 255.f;
 		};
 		uint8_t r;
 		uint8_t g;
